@@ -12,15 +12,13 @@ class Package(ConanFile):
         self.requires("lyra/1.6.1")
         self.requires("cpptrace/0.7.0", force=True)
         self.requires("libassert/2.1.0")
-        # Testing etc
-        self.requires("gtest/1.14.0")
-        self.requires("benchmark/1.9.0")
 
         # Conflicts:
         ## handle conflicts here with self.requires("package/version", override=True)
 
     def build_requirements(self):
-        pass
+        self.test_requires("gtest/1.14.0")
+        self.test_requires("benchmark/1.9.0")
 
     def layout(self):
         cmake_layout(self)
