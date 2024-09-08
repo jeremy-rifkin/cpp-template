@@ -1,0 +1,7 @@
+include(cmake/ProjectIsTopLevel.cmake)
+if(PROJECT_IS_TOP_LEVEL)
+  find_program(CCACHE ccache)
+  if(CCACHE)
+    set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ${CCACHE})
+  endif()
+endif()
