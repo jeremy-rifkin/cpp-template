@@ -24,7 +24,7 @@ build/conan/build/$(BUILD_TYPE_UPPER)/generators/conan_toolchain.cmake: .venv/to
 	mkdir -p build
 	. .venv/bin/activate; pip install conan; conan profile detect --name $(PROFILE) --exist-ok
 	. .venv/bin/activate; conan graph info conanfile.py --format=html --profile:all=$(PROFILE) > build/conangraph.html
-	. .venv/bin/activate; conan install . --build=missing -s build_type=$(BUILD_TYPE_UPPER) -of build/conan --profile:all=$(PROFILE)
+	. .venv/bin/activate; conan install . --build=missing -s build_type=$(BUILD_TYPE_UPPER) -of build/conan --profile:all=$(PROFILE) --lockfile-partial --lockfile-out=conan.lock
 
 build/configured-$(BUILD_TYPE): build/conan/build/$(BUILD_TYPE_UPPER)/generators/conan_toolchain.cmake
 	$(CMAKE) -S . -B build/$(BUILD_TYPE) -GNinja -DCMAKE_BUILD_TYPE=$(BUILD_TYPE_UPPER) -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_TOOLCHAIN_FILE=build/conan/build/$(BUILD_TYPE_UPPER)/generators/conan_toolchain.cmake -DCMAKE_POLICY_DEFAULT_CMP0091=NEW
