@@ -10,7 +10,7 @@ class Package(ConanFile):
         self.requires("fmt/10.2.1")
         self.requires("spdlog/1.14.1")
         self.requires("lyra/1.6.1")
-        self.requires("cpptrace/0.7.0", override=True)
+        self.requires("cpptrace/0.7.0", force=True)
         self.requires("libassert/2.1.0")
         # Testing etc
         self.requires("gtest/1.14.0")
